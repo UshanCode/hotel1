@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="stylesheet3.css">
+    <title>Personal websaite</title>
+</head>
+<header id="main-header">
+    <div class="container">
+        <!--logo-->
+        <div class="logo">
+            <h1>Personal website</h1>
+        </div>
+
+        <!--Navigation Menu-->
+        <nav id="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index2.html">About me</a></li>
+                <li><a href="index3.html">Contact me</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<body>
+
+    <div id="contact">
+        <h1 id="he">Contact me</h1>
+        <ul>
+            <li>My email - <a href="#">isuru99@gmail.com</a><br><br></li>
+            <li>Personal telephone number - 077 5283654<br><br></li>
+            <li>Official telephone number - 091 3654897<br><br></li>
+            <li>Address - No.03, Ranasinghawtta , Galle.<br><br></li>
+        </ul>
+    </div>
+    <img src="https://cdn.pixabay.com/photo/2016/12/15/12/24/contact-us-1908762__340.png" alt="#">
+
+    <form method="post" id="userform">
+        <table>
+            <tr>
+                <td class="aaa"><label for="fname">First name</label></td>
+                <td class="aaa">:</td>
+                <td class="aaa"><input type="text" id="fname"></td>
+            </tr>
+            <tr>
+                <td class="aaa"><label for="lname">Last name</label></td>
+                <td class="aaa">:</td>
+                <td class="aaa"><input type="text" id="lname"></td>
+            </tr>
+            <tr>
+                <td class="aaa"><label for="email">E-mail</label></td>
+                <td class="aaa">:</td>
+                <td class="aaa"><input type="text" id="email"></td>
+            </tr>
+            <tr>
+                <td><label for="massage">Massage</label></td>
+                <td>:</td>
+                <td><textarea id="massage"></textarea></td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit" id="btn" onclick="myFun()">
+    </form>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+    
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCVh1IR6zH0RCUNe4oe4I3-0nfs9TGlsLE",
+          authDomain: "database-9c544.firebaseapp.com",
+          databaseURL: "https://database-9c544-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "database-9c544",
+          storageBucket: "database-9c544.appspot.com",
+          messagingSenderId: "24214857352",
+          appId: "1:24214857352:web:2cc1efd111ae6b51fbe13d"
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+    
+        const db = getDatabase(app);
+        console.log(db);
+    
+        document.getElementById("userform").addEventListener("submit", function (e) {
+    
+          e.preventDefault();
+          let userId = document.getElementById("fname").value;
+          let lastname = document.getElementById("lname").value;
+          let email = document.getElementById("email").value;
+          let massage = document.getElementById("massage").value;
+    
+          set(ref(db, 'users/' + userId), {
+            fname: userId,
+            lname:lastname,
+            email: email,
+            massage: massage,
+
+    
+          });
+        });
+
+       
+      </script>
+
+    
+
+    <!--Footer-->
+    <p id="ftr">Thank you! <br>
+        #Isuru's personal website<br>
+        #2022</p>
+
+    <script>
+         function myFun(){
+        alert("Massage send");
+        }
+    </script>
+
+</body>
+
+</html>
